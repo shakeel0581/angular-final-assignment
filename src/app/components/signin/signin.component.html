@@ -1,27 +1,35 @@
-<div class="form-signin w-100 m-auto">
-    <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
-      <h3 class="h3 mb-3 font-weight-normal text-center">Please sign in</h3>
-      <div class="mb-3">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Enter email"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label>Password</label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Password"
-        />
-      </div>
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </div>
-    </form>
-  </div>
+<div class="form-signin w-100 m-auto custom-Container">
+  <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
+    <h3 class="h3 mb-3 font-weight-normal text-center">Please sign in</h3>
+    <div class="mb-3">
+      <label>Email</label>
+      <input
+        required
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input
+        type="password"
+        required
+        class="form-control"
+        formControlName="password"
+        placeholder="Password"
+      />
+    </div>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.7)"
+  template="<img height='100px' src='https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-18-223_512.gif' />"
+>
+</ngx-spinner>

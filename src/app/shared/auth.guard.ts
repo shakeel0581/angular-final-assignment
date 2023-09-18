@@ -20,7 +20,8 @@ export class AuthGuard {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.isLoggedIn !== true) {
+    const checkTOken = this.authService.isLoggedIn();
+    if (!checkTOken) {
       window.alert('Access not allowed!');
       this.router.navigate(['log-in']);
     }
