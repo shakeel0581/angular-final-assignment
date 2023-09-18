@@ -1,21 +1,38 @@
 <div class="row justify-content-center mt-5">
-    <div class="col-md-4">
-      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label>Name</label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="name"
-            required
-          />
-        </div>
-    
-        <div class="form-group">
-          <button class="btn btn-primary btn-block" type="submit">
-            Add Category
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="col-md-4">
+    <form [formGroup]="catForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Name</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="image" class="form-label">Choose an image:</label>
+        <input
+          class="form-control"
+          type="file"
+          multiple
+          id="image"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <br />
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit">
+          Add Category
+        </button>
+      </div>
+    </form>
   </div>
+</div>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.7)"
+  template="<img height='100px' src='https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-18-223_512.gif' />"
+>
+</ngx-spinner>

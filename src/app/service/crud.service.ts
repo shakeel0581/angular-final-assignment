@@ -52,6 +52,19 @@ export class CrudService {
       .post(API_URL, data)
       .pipe(catchError(this.handleError));
   }
+
+  AddFile(file: File | null): Observable<any> | null {
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      let API_URL = `${this.REST_API}/files/upload`;
+      return this.httpClient
+        .post(API_URL, formData)
+        .pipe(catchError(this.handleError));
+    }
+    return null;
+  }
+
   // Get all objects
   GetProducts() {
     return this.httpClient.get(`${this.REST_API}/products`);
@@ -84,7 +97,7 @@ export class CrudService {
       // Handle server error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
+    alert(errorMessage);
     return throwError(() => {
       errorMessage;
     });

@@ -1,28 +1,58 @@
 <div class="container">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h2 class="h2">Product List</h2>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th class="text-center" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of Product; let i = index">
-            <th scope="row">{{product.id}}</th>
-            <td>{{product.title}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-primary" routerLink="/edit-product/{{product.id}}">Edit</button>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div
+    class="
+      d-flex
+      justify-content-between
+      flex-wrap flex-md-nowrap
+      align-items-center
+      pt-3
+      pb-2
+      mb-3
+      border-bottom
+    "
+  >
+    <h2 class="h2">Product List</h2>
   </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Description</th>
+          <th scope="col">Images</th>
+          <th scope="col">Images 2</th>
+          <th scope="col">Images 3</th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of Product; let i = index">
+          <th scope="row">{{ product.id }}</th>
+          <td>{{ product.title }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.description }}</td>
+
+          <td *ngFor="let im of product.images; let ix = index">
+            <img height="100px" src="{{ im }}" />
+          </td>
+          <td class="text-center">
+            <button
+              class="btn btn-sm btn-primary"
+              routerLink="/edit-product/{{ product.id }}"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.7)"
+  template="<img height='100px' src='https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-18-223_512.gif' />"
+>
+</ngx-spinner>
