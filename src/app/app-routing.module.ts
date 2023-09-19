@@ -11,25 +11,65 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './shared/auth.guard';
+import { AuthLoginGuard } from './shared/auth-login.guard';
 
 const routes: Routes = [
-  { path: 'log-in', component: SigninComponent },
-  { path: 'sign-up', component: SignupComponent },
-  { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: 'add-category', component: AddCategorieComponent},
-  { path: 'category-list', component: CategorieListComponent},
-  { path: 'add-category', component: AddCategorieComponent},
-  { path: 'edit-category/:id', component: CategorieDetailComponent},
-  { path: 'product-list', component: ProductListComponent},
-  { path: 'add-product', component: AddProductComponent},
-  { path: 'edit-product/:id', component: ProductDetailComponent},
-  { path: '', redirectTo: '/log-in', pathMatch: 'full' },
-  
-]
+  {
+    path: '',
+    redirectTo: '/user-profile',
+    pathMatch: 'full',
+  },
+  { path: 'log-in', component: SigninComponent, canActivate: [AuthLoginGuard] },
+  {
+    path: 'sign-up',
+    component: SignupComponent,
+    canActivate: [AuthLoginGuard],
+  },
+  {
+    path: 'user-profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-category',
+    component: AddCategorieComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'category-list',
+    component: CategorieListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-category',
+    component: AddCategorieComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-category/:id',
+    component: CategorieDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'product-list/:offset/:limit',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-product/:id',
+    component: ProductDetailComponent,
+    canActivate: [AuthGuard],
+  },
+];
 
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

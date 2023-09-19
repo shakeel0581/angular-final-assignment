@@ -69,6 +69,16 @@ export class CrudService {
   GetProducts() {
     return this.httpClient.get(`${this.REST_API}/products`);
   }
+
+  // Get all objects Pagination
+  GetProductsByPage(offset: number, limit: string | null) {
+    if (offset >= 0 && limit) {
+      return this.httpClient.get(
+        `${this.REST_API}/products/?offset=${offset}&limit=${limit}`
+      );
+    }
+    return null;
+  }
   // Get single object
   GetProduct(id: any): Observable<any> {
     let API_URL = `${this.REST_API}/products/${id}`;

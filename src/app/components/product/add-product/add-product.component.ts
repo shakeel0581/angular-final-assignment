@@ -58,7 +58,9 @@ export class AddProductComponent implements OnInit {
         this.crudService.AddProduct(this.productForm.value).subscribe(
           (res: any) => {
             this.spinner.hide();
-            this.ngZone.run(() => this.router.navigateByUrl('/product-list'));
+            this.ngZone.run(() =>
+              this.router.navigateByUrl('/product-list/0/10')
+            );
           },
           (err: any) => {
             this.spinner.hide();

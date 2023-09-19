@@ -9,9 +9,13 @@
       pb-2
       mb-3
       border-bottom
+      justify-content-between
     "
   >
-    <h2 class="h2">Product List</h2>
+    <h2 class="h2">Products List</h2>
+    <button class="btn btn-sm btn-primary" routerLink="/add-product">
+      &plus; Add Product
+    </button>
   </div>
   <div class="table-responsive">
     <table class="table table-bordered">
@@ -50,6 +54,42 @@
     </table>
   </div>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/product-list/{{ this.pre }}/10"
+        aria-label="Previous"
+      >
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let p of PaginationCount; let i = index" class="page-item">
+      <div *ngIf="(+p - 1) * 10 == this.offset; else elseBlock">
+        <a
+          class="page-link active"
+          href="/product-list/{{ (+p - 1) * 10 }}/10"
+          >{{ p }}</a
+        >
+      </div>
+      <ng-template #elseBlock>
+        <a class="page-link" href="/product-list/{{ (+p - 1) * 10 }}/10">{{
+          p
+        }}</a>
+      </ng-template>
+    </li>
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/product-list/{{ this.next }}/10"
+        aria-label="Next"
+      >
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.7)"

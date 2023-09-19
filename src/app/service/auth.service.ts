@@ -52,7 +52,7 @@ export class AuthService {
         this.getUserProfile(res.access_token).subscribe((res) => {
           this.currentUser = res;
 
-          this.router.navigate(['user-profile/' + res.id]);
+          this.router.navigate(['user-profile/']);
         });
       });
   }
