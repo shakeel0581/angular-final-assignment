@@ -10,13 +10,19 @@ import { ProductDetailComponent } from './components/product/product-detail/prod
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProductPublicComponent } from './product-public/product-public.component';
+
 import { AuthGuard } from './shared/auth.guard';
 import { AuthLoginGuard } from './shared/auth-login.guard';
 
 const routes: Routes = [
   {
+    path: 'available-product/:offset/:limit',
+    component: ProductPublicComponent,
+  },
+  {
     path: '',
-    redirectTo: '/user-profile',
+    redirectTo: 'available-product/0/9',
     pathMatch: 'full',
   },
   { path: 'log-in', component: SigninComponent, canActivate: [AuthLoginGuard] },

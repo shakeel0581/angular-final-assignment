@@ -18,6 +18,8 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ProductPublicComponent } from './product-public/product-public.component';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
+    ProductPublicComponent,
+    ProductViewComponent,
   ],
   imports: [
     BrowserModule,

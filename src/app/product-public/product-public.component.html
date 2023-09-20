@@ -1,0 +1,124 @@
+<div id="mobile-filter">
+  <p class="pl-sm-0 pl-2">Home | <b>All Products</b></p>
+  <div class="border-bottom pb-2 ml-2">
+    <h4 id="burgundy">Filters</h4>
+  </div>
+  <div class="py-2 border-bottom ml-3">
+    <h6 class="font-weight-bold">Categories</h6>
+    <div id="orange"><span class="fa fa-minus"></span></div>
+    <form>
+      <div class="form-group" *ngFor="let category of Category; let i = index">
+        <a href="">
+          <label for="artisan">{{ category.name }}</label>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Sidebar filter section -->
+
+<section id="sidebar">
+  <p>Home | <b>All Products</b></p>
+  <div class="border-bottom pb-2 ml-2">
+    <h4 id="burgundy">Filters</h4>
+  </div>
+  <div class="py-2 border-bottom ml-3">
+    <h6 class="font-weight-bold">Categories</h6>
+    <div id="orange"><span class="fa fa-minus"></span></div>
+    <form>
+      <div class="form-group" *ngFor="let category of Category; let i = index">
+        <div
+          [style.background]="
+            selectedCat.id === category.id ? 'orange' : 'rgba(0, 0, 0, 0)'
+          "
+          class="d-flex flex-row clickable-div justify-content-between"
+          (click)="this.onSelectCategory(category)"
+        >
+          <span class="cat-name">{{ category.name }}</span>
+          <img
+            height="40"
+            width="40"
+            src="{{ category.image }}"
+            alt="{{ category.name }}"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- products section -->
+<section id="products">
+  <div class="container">
+    <div class="d-flex flex-row">
+      <div class="text-muted m-2" id="res">
+        Showing {{ Product.length }} results
+      </div>
+    </div>
+    <div class="row">
+      <div
+        class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1"
+        *ngFor="let product of Product; let i = index"
+      >
+        <div class="card">
+          <img class="card-img-top" src="{{ product.images[0] }}" />
+          <div class="card-body">
+            <h5>
+              <b>{{ product.title }}</b>
+            </h5>
+            <div class="text-muted">Price: {{ product.price }}</div>
+
+            <div class="d-flex my-2">
+              <div class="text-muted">
+                {{ product.description.substring(0, 50)
+                }}<span *ngIf="product.description.length > 50">...</span>
+              </div>
+            </div>
+            <button class="btn w-100 rounded my-2">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav *ngIf="!this.selectedCat.id" aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/available-product/{{ this.pre }}/9"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let p of PaginationCount; let i = index" class="page-item">
+        <div *ngIf="(+p - 1) * 9 == this.offset; else elseBlock">
+          <a
+            class="page-link active"
+            href="/available-product/{{ (+p - 1) * 9 }}/9"
+            >{{ p }}</a
+          >
+        </div>
+        <ng-template #elseBlock>
+          <a class="page-link" href="/available-product/{{ (+p - 1) * 9 }}/9">{{
+            p
+          }}</a>
+        </ng-template>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="/available-product/{{ this.next }}/9"
+          aria-label="Next"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</section>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.7)"
+  template="<img height='100px' src='https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-18-223_512.gif' />"
+>
+</ngx-spinner>

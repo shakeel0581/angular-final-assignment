@@ -28,6 +28,7 @@ export class CrudService {
   GetCategorys() {
     return this.httpClient.get(`${this.REST_API}/categories`);
   }
+
   // Get single object
   GetCategory(id: any): Observable<any> {
     let API_URL = `${this.REST_API}/categories/${id}`;
@@ -38,6 +39,7 @@ export class CrudService {
       catchError(this.handleError)
     );
   }
+
   // Update
   UpdateCategory(id: any, data: any): Observable<any> {
     let API_URL = `${this.REST_API}/categories/${id}`;
