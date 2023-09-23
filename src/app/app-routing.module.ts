@@ -11,19 +11,27 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductPublicComponent } from './product-public/product-public.component';
+import { ProductViewComponent } from './product-view/product-view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { AuthGuard } from './shared/auth.guard';
 import { AuthLoginGuard } from './shared/auth-login.guard';
 
 const routes: Routes = [
+  { path: '**', component: ProductPublicComponent },
   {
     path: 'available-product/:offset/:limit',
     component: ProductPublicComponent,
   },
   {
+    path: 'product-view/:id',
+    component: ProductViewComponent,
+  },
+  {
     path: '',
-    redirectTo: 'available-product/0/9',
-    pathMatch: 'full',
+    // redirectTo: 'available-product/0/21',
+    // pathMatch: 'full',
+    component: ProductPublicComponent,
   },
   { path: 'log-in', component: SigninComponent, canActivate: [AuthLoginGuard] },
   {

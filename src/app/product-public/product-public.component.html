@@ -8,9 +8,21 @@
     <div id="orange"><span class="fa fa-minus"></span></div>
     <form>
       <div class="form-group" *ngFor="let category of Category; let i = index">
-        <a href="">
-          <label for="artisan">{{ category.name }}</label>
-        </a>
+        <div
+          [style.background]="
+            selectedCat.id === category.id ? 'orange' : 'rgba(0, 0, 0, 0)'
+          "
+          class="d-flex flex-row clickable-div justify-content-between"
+          (click)="this.onSelectCategory(category)"
+        >
+          <span class="cat-name">{{ category.name }}</span>
+          <img
+            height="40"
+            width="40"
+            src="{{ category.image }}"
+            alt="{{ category.name }}"
+          />
+        </div>
       </div>
     </form>
   </div>
@@ -73,7 +85,12 @@
                 }}<span *ngIf="product.description.length > 50">...</span>
               </div>
             </div>
-            <button class="btn w-100 rounded my-2">View</button>
+            <button
+              (click)="navigation(product.id)"
+              class="btn w-100 rounded my-2"
+            >
+              View
+            </button>
           </div>
         </div>
       </div>
@@ -84,30 +101,38 @@
       <li class="page-item">
         <a
           class="page-link"
-          href="/available-product/{{ this.pre }}/9"
+          href="/available-product/{{ this.pre }}/{{ this.offsetProducts }}"
           aria-label="Previous"
         >
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li *ngFor="let p of PaginationCount; let i = index" class="page-item">
-        <div *ngIf="(+p - 1) * 9 == this.offset; else elseBlock">
+        <div
+          *ngIf="(+p - 1) * this.offsetProducts == this.offset; else elseBlock"
+        >
           <a
             class="page-link active"
-            href="/available-product/{{ (+p - 1) * 9 }}/9"
+            href="/available-product/{{ (+p - 1) * this.offsetProducts }}/{{
+              this.offsetProducts
+            }}s"
             >{{ p }}</a
           >
         </div>
         <ng-template #elseBlock>
-          <a class="page-link" href="/available-product/{{ (+p - 1) * 9 }}/9">{{
-            p
-          }}</a>
+          <a
+            class="page-link"
+            href="/available-product/{{ (+p - 1) * this.offsetProducts }}/{{
+              this.offsetProducts
+            }}"
+            >{{ p }}</a
+          >
         </ng-template>
       </li>
       <li class="page-item">
         <a
           class="page-link"
-          href="/available-product/{{ this.next }}/9"
+          href="/available-product/{{ this.next }}/{{ this.offsetProducts }}"
           aria-label="Next"
         >
           <span aria-hidden="true">&raquo;</span>

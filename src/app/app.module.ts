@@ -20,6 +20,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ProductPublicComponent } from './product-public/product-public.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
     UserProfileComponent,
     ProductPublicComponent,
     ProductViewComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
